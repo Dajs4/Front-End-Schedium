@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Scrollbar personalizado */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-sena-gray-100;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-sena-gray-300 rounded;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-sena-gray-600;
+  }
+}
+
+@layer utilities {
+  /* Animación de skeleton loading */
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      theme('colors.sena.gray.100') 25%,
+      theme('colors.sena.gray.200') 50%,
+      theme('colors.sena.gray.100') 75%
+    );
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+  }
+
+  @keyframes loading {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+
+  /* Focus visible */
+  .focus-visible-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sena-primary focus-visible:ring-offset-2;
+  }
+}
