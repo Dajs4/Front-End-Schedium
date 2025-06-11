@@ -1,3 +1,4 @@
+/* src/styles/globals.css */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
@@ -5,57 +6,266 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-gray-200;
   }
   
   body {
-    @apply bg-background text-foreground;
+    @apply bg-white text-gray-900;
     font-feature-settings: "rlig" 1, "calt" 1;
-  }
-
-  /* Scrollbar personalizado */
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-
-  ::-webkit-scrollbar-track {
-    @apply bg-sena-gray-100;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    @apply bg-sena-gray-300 rounded;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    @apply bg-sena-gray-600;
   }
 }
 
+@layer components {
+  /* Scrollbar personalizado */
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #d1d5db #f3f4f6;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-gray-100 rounded-full;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded-full;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400;
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Design System SENA */
+@layer base {
+  :root {
+    /* Colores institucionales SENA */
+    --sena-primary: #003366;
+    --sena-primary-dark: #002244;
+    --sena-primary-light: #0055aa;
+    --sena-secondary: #39A900;
+    --sena-accent: #FF6B00;
+    --sena-gray-100: #F5F5F5;
+    --sena-gray-200: #E5E5E5;
+    --sena-gray-300: #D4D4D4;
+    --sena-gray-600: #525252;
+    --sena-gray-900: #171717;
+    
+    /* shadcn/ui variables */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 210 100% 20%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 210 100% 20%;
+    --radius: 0.5rem;
+  }
+  
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+  }
+}
+
+/* Utility classes personalizadas */
 @layer utilities {
-  /* Animación de skeleton loading */
-  .skeleton {
-    background: linear-gradient(
-      90deg,
-      theme('colors.sena.gray.100') 25%,
-      theme('colors.sena.gray.200') 50%,
-      theme('colors.sena.gray.100') 75%
-    );
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
+  /* Animaciones */
+  .animate-in {
+    animation: animate-in 0.2s ease-out;
   }
-
-  @keyframes loading {
-    0% {
-      background-position: 200% 0;
+  
+  .animate-out {
+    animation: animate-out 0.2s ease-in forwards;
+  }
+  
+  @keyframes animate-in {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
     }
-    100% {
-      background-position: -200% 0;
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
+  
+  @keyframes animate-out {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+  }
+  
+  /* Transiciones suaves */
+  .transition-base {
+    @apply transition-all duration-200 ease-in-out;
+  }
+  
+  /* Efectos hover para cards */
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+  }
+  
+  /* Gradientes SENA */
+  .gradient-sena {
+    @apply bg-gradient-to-r from-[#003366] to-[#0055aa];
+  }
+  
+  .gradient-sena-subtle {
+    @apply bg-gradient-to-br from-gray-50 via-white to-blue-50;
+  }
+}
 
-  /* Focus visible */
-  .focus-visible-ring {
-    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sena-primary focus-visible:ring-offset-2;
+/* Estilos base para componentes */
+@layer components {
+  /* Botones base */
+  .btn {
+    @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
+  }
+  
+  .btn-primary {
+    @apply btn bg-[#003366] text-white hover:bg-[#002244] focus-visible:ring-[#003366];
+  }
+  
+  .btn-secondary {
+    @apply btn border-2 border-[#003366] bg-transparent text-[#003366] hover:bg-[#003366] hover:text-white;
+  }
+  
+  .btn-ghost {
+    @apply btn hover:bg-gray-100 hover:text-gray-900;
+  }
+  
+  /* Inputs base */
+  .input {
+    @apply flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#003366] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  
+  /* Cards */
+  .card {
+    @apply rounded-lg border border-gray-200 bg-white p-6 shadow-sm;
+  }
+  
+  /* Badges */
+  .badge {
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold transition-colors;
+  }
+  
+  .badge-primary {
+    @apply badge bg-blue-100 text-blue-800;
+  }
+  
+  .badge-success {
+    @apply badge bg-green-100 text-green-800;
+  }
+  
+  .badge-warning {
+    @apply badge bg-yellow-100 text-yellow-800;
+  }
+  
+  .badge-danger {
+    @apply badge bg-red-100 text-red-800;
+  }
+}
+
+/* Tipografía */
+@layer base {
+  h1 {
+    @apply text-3xl font-bold tracking-tight text-gray-900;
+  }
+  
+  h2 {
+    @apply text-2xl font-semibold tracking-tight text-gray-900;
+  }
+  
+  h3 {
+    @apply text-xl font-semibold tracking-tight text-gray-900;
+  }
+  
+  h4 {
+    @apply text-lg font-semibold text-gray-900;
+  }
+  
+  p {
+    @apply text-base text-gray-700;
+  }
+  
+  .text-muted {
+    @apply text-sm text-gray-500;
+  }
+}
+
+/* Utilidades de espaciado */
+@layer utilities {
+  .section-padding {
+    @apply px-4 py-8 sm:px-6 lg:px-8;
+  }
+  
+  .container-padding {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+}
+
+/* Efectos de focus accesibles */
+@layer base {
+  :focus-visible {
+    @apply outline-none ring-2 ring-[#003366] ring-offset-2;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .print-break {
+    page-break-after: always;
   }
 }
